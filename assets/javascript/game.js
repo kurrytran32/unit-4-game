@@ -17,51 +17,97 @@
 let game = {
     wins: 0,
     losses: 0,
-    playerValue:0,
-    compNumber:[],
+    playerValue: 0,
+    compNumber: [],
     gemArr: [],
+    gemValue1: 0,
 
     //function for getting a random number for compNumber
-    compRandom: function(){
-        randomNumber = Math.floor(Math.random() * 120) + 19;
+    compRandom: function () {
+        randomNumber = Math.floor(Math.random() * 101 + 19);
         this.compNumber.push(randomNumber);
         return randomNumber;
     },
 
     //random numbers for gems
-    gemRandom: function() {
-        
+    gemRandom: function () {
         let randomGem = Math.floor(Math.random() * 12) + 1;
         this.gemArr.push(randomGem);
-        
-        // return randomGem;
         console.log(randomGem);
-        console.log(this.gemArr);
     },
-
     //reseting game after win or lose
-    gameReset: function() {
+    gameReset: function () {
         this.gemArr.splice(0, this.gemArr.length);
-        this.compNumber.splice(0,this.compNumber.length);
+        this.compNumber.splice(0, this.compNumber.length);
         playerValue = 0;
     },
     //using gemArr to assign pictures the randomGem values
-    gemSet: function(){
-        let gemValue = document.getElementsByClassName("gemInfo");
-        for(i = 0; i < this.gemArr.length; i++){
-            
+    gemSet: function () {
+        // this.gemValue1.push(this.gemArr[0]);
+        this.gemValue1 = document.getElementById("gemPc1");
+        this.gemValue2 = document.getElementById("gemPc2");
+        this.gemValue3 = document.getElementById("gemPc3");
+        this.gemValue4 = document.getElementById("gemPc4");
+
+    },
+
+    gemNum: function () {
+        this.gemValue1 = this.gemArr[0];
+        this.gemValue2 = this.gemArr[1];
+        this.gemValue3 = this.gemArr[2];
+        this.gemValue4 = this.gemArr[3];
+    },
+
+    winLose: function () {
+        if (this.playerValue > this.compNumber[0]) {
+            this.loss++;
+            alert("Better luck next time bud...");
+            this.gameReset();
         }
-        
+        if (game.playerValue === game.compNumber[0]) {
+            this.wins++;
+            alert("Very nice!~~");
+            this.gameReset();
+        }
     }
-
-
-
 }
 //loads certain functions when window loads
-window.onload = function() {
-    for(i = 0; i < 4; i++){
-    game.gemRandom();
+window.onload = function () {
+    for (i = 0; i < 4; i++) {
+        game.gemRandom();
     };
+    game.compRandom();
+    game.gemSet();
+    game.gemNum();
+    console.log(game.gemArr);
+    console.log(game.playerValue);
+    console.log(game.compNumber);
+    $('#wins').html("<p>Wins: "+ game.wins + "</p>");
+    $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
+    $('#loss').html("<p>Losses: "+ game.losses + "</p>");
+    $('#guess').html("<p>Your number: "+ game.playerValue + "</p>");
 };
+
+//setting which button will have what value when clicked
+$("#gemPc1").on('click', function (event) {
+    game.playerValue = parseInt(game.playerValue) + parseInt(game.gemValue1);
+    console.log(game.playerValue)
+    game.winLose();
+});
+$("#gemPc2").on('click', function (event) {
+    game.playerValue = parseInt(game.playerValue) + parseInt(game.gemValue2);
+    console.log(game.playerValue);
+    game.winLose();
+});
+$("#gemPc3").on('click', function (event) {
+    game.playerValue = parseInt(game.playerValue) + parseInt(game.gemValue3);
+    console.log(game.playerValue);
+    game.winLose();
+});
+$("#gemPc4").on('click', function (event) {
+    game.playerValue = parseInt(game.playerValue) + parseInt(game.gemValue4);
+    console.log(game.playerValue);
+    game.winLose();
+});
 
 
