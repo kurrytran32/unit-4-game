@@ -35,7 +35,6 @@ let game = {
     },
     //using gemArr to assign pictures the randomGem values
     gemSet: function () {
-        // this.gemValue1.push(this.gemArr[0]);
         this.gemValue1 = document.getElementById("gemPc1");
         this.gemValue2 = document.getElementById("gemPc2");
         this.gemValue3 = document.getElementById("gemPc3");
