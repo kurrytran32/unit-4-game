@@ -65,10 +65,11 @@ let game = {
         }
     },
     //starting the game
-    gameStart: function(){
+    gameStart: function () {
         for (i = 0; i < 4; i++) {
             this.gemRandom();
         };
+        
         this.compRandom();
         this.gemSet();
         this.gemNum();
@@ -79,17 +80,17 @@ let game = {
         this.gemArr.splice(0, this.gemArr.length);
         this.compNumber.splice(0, this.compNumber.length);
         this.playerValue = 0;
-        $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
+        $('#comp').html("<p>Reach: " + game.compNumber + "</p>");
     },
 }
 //loads certain functions when window loads
 window.onload = function () {
     game.gameStart();
     console.log(game.compNumber);
-    $('#wins').html("<p>Wins: "+ game.wins + "</p>");
-    $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
-    $('#loss').html("<p>Losses: "+ game.losses + "</p>");
-    $('#guess').html("<p>Your number: "+ game.playerValue + "</p>");
+    $('#wins').html("<p>Wins: " + game.wins + "</p>");
+    $('#comp').html("<p>Reach: " + game.compNumber + "</p>");
+    $('#loss').html("<p>Losses: " + game.losses + "</p>");
+    $('#guess').html("<p>Your number: " + game.playerValue + "</p>");
 };
 
 //setting which button will have what value when clicked
@@ -113,10 +114,10 @@ $("#gemPc4").on('click', function (event) {
     console.log(game.playerValue);
     game.winLose();
 });
-$('.btn').on('click', function(){
-    $('#wins').html("<p>Wins: "+ game.wins + "</p>");
-    $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
-    $('#loss').html("<p>Losses: "+ game.losses + "</p>");
-    $('#guess').html("<p>Your number: "+ game.playerValue + "</p>");
+$('.btn').on('click', function () {
+    $('#wins').html("<p>Wins: " + game.wins + "</p>");
+    $('#comp').html("<p>Reach: " + game.compNumber + "</p>");
+    $('#loss').html("<p>Losses: " + game.losses + "</p>");
+    $('#guess').html("<p>Your number: " + game.playerValue + "</p>");
 });
 
