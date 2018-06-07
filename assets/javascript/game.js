@@ -30,9 +30,13 @@ let game = {
 
     //random numbers for gems
     gemRandom: function() {
+        
         let randomGem = Math.floor(Math.random() * 12) + 1;
         this.gemArr.push(randomGem);
-        return randomGem;
+        
+        // return randomGem;
+        console.log(randomGem);
+        console.log(this.gemArr);
     },
 
     //reseting game after win or lose
@@ -41,5 +45,23 @@ let game = {
         this.compNumber.splice(0,this.compNumber.length);
         playerValue = 0;
     },
+    //using gemArr to assign pictures the randomGem values
+    gemSet: function(){
+        let gemValue = document.getElementsByClassName("gemInfo");
+        for(i = 0; i < this.gemArr.length; i++){
+            
+        }
+        
+    }
+
+
 
 }
+//loads certain functions when window loads
+window.onload = function() {
+    for(i = 0; i < 4; i++){
+    game.gemRandom();
+    };
+};
+
+
