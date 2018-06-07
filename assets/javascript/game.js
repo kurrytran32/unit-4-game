@@ -20,7 +20,6 @@ let game = {
     playerValue: 0,
     compNumber: [],
     gemArr: [],
-    gemValue1: 0,
 
     //function for getting a random number for compNumber
     compRandom: function () {
@@ -28,18 +27,11 @@ let game = {
         this.compNumber.push(randomNumber);
         return randomNumber;
     },
-
     //random numbers for gems
     gemRandom: function () {
         let randomGem = Math.floor(Math.random() * 12) + 1;
         this.gemArr.push(randomGem);
         console.log(randomGem);
-    },
-    //reseting game after win or lose
-    gameReset: function () {
-        this.gemArr.splice(0, this.gemArr.length);
-        this.compNumber.splice(0, this.compNumber.length);
-        playerValue = 0;
     },
     //using gemArr to assign pictures the randomGem values
     gemSet: function () {
@@ -60,27 +52,39 @@ let game = {
 
     winLose: function () {
         if (this.playerValue > this.compNumber[0]) {
-            this.loss++;
+            this.losses++;
             alert("Better luck next time bud...");
             this.gameReset();
+            this.gameStart();
         }
-        if (game.playerValue === game.compNumber[0]) {
+        if (this.playerValue === this.compNumber[0]) {
             this.wins++;
             alert("Very nice!~~");
             this.gameReset();
+            this.gameStart();
         }
-    }
+    },
+    //starting the game
+    gameStart: function(){
+        for (i = 0; i < 4; i++) {
+            this.gemRandom();
+        };
+        this.compRandom();
+        this.gemSet();
+        this.gemNum();
+        console.log(game.gemArr);
+    },
+    //reseting game after win or lose
+    gameReset: function () {
+        this.gemArr.splice(0, this.gemArr.length);
+        this.compNumber.splice(0, this.compNumber.length);
+        this.playerValue = 0;
+        $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
+    },
 }
 //loads certain functions when window loads
 window.onload = function () {
-    for (i = 0; i < 4; i++) {
-        game.gemRandom();
-    };
-    game.compRandom();
-    game.gemSet();
-    game.gemNum();
-    console.log(game.gemArr);
-    console.log(game.playerValue);
+    game.gameStart();
     console.log(game.compNumber);
     $('#wins').html("<p>Wins: "+ game.wins + "</p>");
     $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
@@ -109,5 +113,10 @@ $("#gemPc4").on('click', function (event) {
     console.log(game.playerValue);
     game.winLose();
 });
-
+$('.btn').on('click', function(){
+    $('#wins').html("<p>Wins: "+ game.wins + "</p>");
+    $('#comp').html("<p>Reach: "+ game.compNumber + "</p>");
+    $('#loss').html("<p>Losses: "+ game.losses + "</p>");
+    $('#guess').html("<p>Your number: "+ game.playerValue + "</p>");
+});
 
