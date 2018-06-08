@@ -20,6 +20,7 @@ let game = {
     playerValue: 0,
     compNumber: [],
     gemArr: [],
+    randomGem: 0,
 
     //function for getting a random number for compNumber
     compRandom: function () {
@@ -29,10 +30,14 @@ let game = {
     },
     //random numbers for gems
     gemRandom: function () {
-        let randomGem = Math.floor(Math.random() * 12) + 1;
-        this.gemArr.push(randomGem);
-        console.log(randomGem);
+        //gets random number
+        randomGem = Math.floor(Math.random() * 12) + 1;
+        //for loop to put 4 randomnumbers into gem array
     },
+    gemPush: function () {
+        this.gemArr.push(randomGem);
+    },
+
     //using gemArr to assign pictures the randomGem values
     gemSet: function () {
         this.gemValue1 = document.getElementById("gemPc1");
@@ -67,8 +72,28 @@ let game = {
     gameStart: function () {
         for (i = 0; i < 4; i++) {
             this.gemRandom();
-        };
-        
+            this.gemPush();
+        }
+        // for (i = 0; i < 4; i++) {
+        //     this.gemRandom();
+
+        //     if(this.gemArr.indexOf(this.randomGem) > -1){
+        //         return true;
+        //     } 
+
+        // };
+        // this.gemRandom();
+        // this.gemPush();
+        // this.gemRandom();
+        // for (i = 0; i < 3; i++){
+        //     if (this.gemArr.indexOf(this.randomGem) > -1) {
+        //         this.gemRandom();
+        //         this.gemPush();
+        //     } else {
+        //         this.gemPush();
+        //         this.gemRandom();
+        //     }
+        // }
         this.compRandom();
         this.gemSet();
         this.gemNum();
