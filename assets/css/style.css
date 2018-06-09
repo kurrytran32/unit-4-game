@@ -1,8 +1,46 @@
+body{
+    background-color: #ECFCFA;
+}
 .gemInfo {
     width: 120px;
     height: 120px;
 }
+.btn:hover {
+    background-color: transparent;
+    border: 1px solid #1E7AFC;
+}
+
 .btn-info {
-    background-color: white;
+    background-color: #ECFCFA;
+    
     border: none;
+}
+.hero {
+    background-image: url(../images/banner.png);
+    background-color: #ECFCFA;
+    background-size: cover;
+    /* max-width: 1440px; */
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.btn {
+    margin: 15px;
+}
+#hero-title h1{
+    font-family: 'Cormorant Unicase', serif;
+    color: black;
+    font-size: 100px;
+}
+#sub-info{
+    color: #DFFDDD;
+    font-family: 'Lobster', cursive;
+}
+#hero-title, #sub-info {
+    text-shadow: 0 0 25px #4404F9;
+}
+/* changing the font typing using google fonts */
+.game{
+    font-family: 'Gloria Hallelujah', cursive;
 }
